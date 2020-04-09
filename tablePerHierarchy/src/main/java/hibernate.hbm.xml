@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class  name="com.mycompany.tableperhierarchyxml.Employee"  table="TableHierarchyXMLEmployee" discriminator-value="emp">
+      <id name="id" column="emp_id">
+          
+          <generator class="increment"></generator>
+      </id>
+      
+      <discriminator column="type_of_emp" type="string"></discriminator>
+      <property name="name" column="emp_name"></property>
+      
+      <subclass name="com.mycompany.tableperhierarchyxml.Regular_Employee" discriminator-value="reg-emp">
+                  <property name="bonus" column="emp_bonus"></property>
+          <property name="salary" column="emp_salary"></property>
+                </subclass>
+
+                <subclass name="com.mycompany.tableperhierarchyxml.Contract_Employee" discriminator-value="reg-emp2">
+                    <!--
+                    if discriminator value is not specified then column name="packageNmae.className"
+                    -->
+                    
+                    <property name="contract_duration"></property>
+                    <property name="pay_per_hour"></property>
+                    
+                </subclass>
+
+  </class>
+
+</hibernate-mapping>
