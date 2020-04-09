@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="com.mypack.listmapping.Question" table="quesTable">
+  <id name="id" column="quesID">
+            <generator class="increment"></generator>
+        </id>
+        <property name="qname" column="quesAsked"></property>
+        
+        <list name="answers" table="answerTable">
+            <key column="qid"></key>
+            <!--
+            the key element acts as a reference to the question being considered.
+            Eg:if ques is What is your name and it has a primary key of 1, then in the answer table
+            lets say we have 10 answers for this question , then all of those will have key=1 
+            -->
+            <index column="type"></index>
+            <!--
+            for all the 10 answers that we have, they will contain an index from 0-9 both inclusive..these indices will be stored
+            in a column named as 'type'
+            -->
+            <element type="string" column="answer"></element>
+                      
+        </list>
+        
+  </class>
+</hibernate-mapping>

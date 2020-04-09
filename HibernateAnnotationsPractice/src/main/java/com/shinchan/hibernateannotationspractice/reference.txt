@@ -1,0 +1,15 @@
+Person has  unidirectional association to Phone
+One person has many Phones.We can retrieve this info from the Person object but not from the Phone object.
+A join table Person_Phone is auto created by Hibernate that has 2 columns(Person_roll and Phone_Mobile). These columns are foreign keys that
+refer to the columns roll and Mobile in Person and Phone table respectively.
+
+Many cars can be owned by one person;
+Car table has an additional column created (owner_aadhar) that refers to the primary key(owner_aadhar) of the owner table.
+
+One company has many employees.
+This is similar to the Person and Phone case, but specifying a Join Column in the Company class creates an additional column in the 
+Employee class rather than creating an entire different table.
+@JoinColumn(referencedColumnName="address",name="worksAt")
+private List<Employee> employee;
+Now this will create a column in the Employee table with name worksAt that will be "reference" the company address as its foreign key
+ Since we save Company object in the AddEmployee class, we also will have to retrieve a company object
